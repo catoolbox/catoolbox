@@ -1,0 +1,72 @@
+This source distribution includes two components:
+- libcatoolbox, a CA management library;
+- cacli, a command line CA management utility.
+
+libcatoolbox (defined as the files included in the libcatoolbox/ directory in
+this source distribution) is licensed under the following terms:
+-------------------------------------------------------------------------------
+Copyright © 2019, the catoolbox contributors
+
+libcatoolbox is free software: you can redistribute it and/or modify it under
+the terms of the GNU Lesser General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.
+
+libcatoolbox is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License along
+with libcatoolbox. If not, see <http://www.gnu.org/licenses/>.
+
+Additional permission under GNU GPL version 3 section 7
+
+If you modify libcatoolbox, or any covered work, by linking or combining it
+with
+- OpenSSL (or a modified version of that library), or
+- any C/C++ runtime library,
+containing parts covered by the terms of their respective licenses, the
+licensors of libcatoolbox grant you additional permission to convey the
+resulting work.
+If you modify this library, you may extend this exception to your version of
+the library, but you are not obliged to do so. If you do not wish to do so,
+delete this exception statement from your version.
+-------------------------------------------------------------------------------
+
+cacli (defined as the files included in the cacli/ directory in this source
+distribution) is licensed under the following terms:
+-------------------------------------------------------------------------------
+Copyright © 2019, the catoolbox contributors
+
+cacli is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.
+
+cacli is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+cacli. If not, see <http://www.gnu.org/licenses/>.
+
+Additional permission under GNU GPL version 3 section 7
+
+If you modify cacli, or any covered work, by linking or combining it with
+- OpenSSL (or a modified version of that library),
+- any C/C++ runtime library,
+containing parts covered by the terms of their respective licenses, the
+licensors of cacli grant you additional permission to convey the
+resulting work.
+If you modify this software, you may extend this exception to your version of
+the software, but you are not obliged to do so. If you do not wish to do so,
+delete this exception statement from your version.
+-------------------------------------------------------------------------------
+
+Unless otherwise indicated, the files that are not included in the libcatoolbox
+or in the cacli directories are licensed under both these sets of terms.
+If you modify those files, you may:
+- dual license your modifications under both sets of terms, or
+- license them under one of these sets of terms. In this case, remove the set
+  of terms you do not wish to license your modifications under from your
+  version.
