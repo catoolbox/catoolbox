@@ -1,0 +1,44 @@
+version: ~> 1.0
+language: c
+os: linux
+jobs:
+  include:
+  - stage: "Build and test"
+    compiler: gcc
+    os: linux
+    dist: bionic
+  - compiler: clang
+    os: linux
+    dist: bionic
+  - compiler: gcc
+    os: linux
+    dist: xenial
+  - compiler: clang
+    os: linux
+    dist: xenial
+  - compiler: gcc
+    os: linux
+    dist: trusty
+  - compiler: clang
+    os: linux
+    dist: trusty
+  - compiler: gcc
+    os: linux
+    dist: precise
+  - compiler: clang
+    os: linux
+    dist: precise
+  - os: windows
+    cache:
+      directories:
+        - $HOME/AppData/Local/Temp/chocolatey
+  - os: osx
+git:
+  autocrlf: false
+addons:
+  apt:
+    update: true
+before_script:
+  - mkdir build
+  - cd build
+script: cmake .. && cmake --build .
