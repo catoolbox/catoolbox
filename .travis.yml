@@ -19,6 +19,13 @@ jobs:
   - compiler: gcc
     os: linux
     dist: trusty
+    addons:
+      apt:
+        update: true
+        sources:
+          - ubuntu-toolchain-r-test
+        packages:
+          - g++-5
   - compiler: clang
     os: linux
     dist: trusty
