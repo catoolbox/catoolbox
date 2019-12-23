@@ -22,12 +22,6 @@ jobs:
   - compiler: clang
     os: linux
     dist: trusty
-  - compiler: gcc
-    os: linux
-    dist: precise
-  - compiler: clang
-    os: linux
-    dist: precise
   - os: windows
     cache:
       directories:
