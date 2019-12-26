@@ -32,11 +32,11 @@ bug reports and feature requests.
 1. Make sure you are running either the latest release of the project, or the
    Git development version, as we will only accept reports made against them.
    Whenever possible, test against the latest development version.
-2. [Search the bug tracker](https://github.com/AlessandroMenti/catoolbox/issues).
+2. [Search the bug tracker](https://github.com/catoolbox/catoolbox/issues).
    If the issue was already reported and you have further details to add,
    just leave a comment in the existing bug report; please do not open
    duplicates or add `+1` comments to the reports.
-3. If the issue was not reported, [create a new one](https://github.com/AlessandroMenti/catoolbox/issues/new).
+3. If the issue was not reported, [create a new one](https://github.com/catoolbox/catoolbox/issues/new).
    Give all the information required by the issue template.
    **As an exception, if you are reporting a security bug, DO NOT create an
    issue on the bug tracker - doing so will cause more damage than help.
@@ -72,11 +72,11 @@ details/clarifications.
 If the project doesn't do something you need or want it to do:
 
 1. Make sure the feature is not already present in the Git development version.
-2. [Search the bug tracker](https://github.com/AlessandroMenti/catoolbox/issues).
+2. [Search the bug tracker](https://github.com/catoolbox/catoolbox/issues).
    If the feature was already requested and you have further details to add,
    just leave a comment in the existing bug report; please do not open
    duplicates or add `+1` comments to the reports.
-3. If the feature was not requested, [create a new issue](https://github.com/AlessandroMenti/catoolbox/issues/new).
+3. If the feature was not requested, [create a new issue](https://github.com/catoolbox/catoolbox/issues/new).
    Give all the information required by the issue template; provide as much
    context as you can about what you are running into and try to be clear
    about why existing features/alternative would not work.
@@ -142,7 +142,7 @@ To contribute documentation:
   it to make sure you didn't miss anything.
 * Commit your changes to your fork - make sure to follow the
   [commit guidelines](#commit-guidelines).
-* [Open a pull request with your changes](https://github.com/AlessandroMenti/catoolbox/pulls).
+* [Open a pull request with your changes](https://github.com/catoolbox/catoolbox/pulls).
 
 Once you have filed the pull request:
 
@@ -166,7 +166,7 @@ To contribute code:
 * Write tests that verify that your contribution works as expected.
 * Commit your changes to your fork - make sure to follow the
   [commit guidelines](#commit-guidelines).
-* [Open a pull request with your changes](https://github.com/AlessandroMenti/catoolbox/pulls).
+* [Open a pull request with your changes](https://github.com/catoolbox/catoolbox/pulls).
 
 Once you have filed the pull request:
 

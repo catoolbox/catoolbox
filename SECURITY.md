@@ -35,7 +35,7 @@ The typical process for handling vulnerability reports is:
 4. We investigate the report and either reject it (detailing the reasons) or
    accept it.
 5. In case the report is accepted, we work on a fix and commit it to a private
-   branch, draft a [security advisory](https://github.com/AlessandroMenti/catoolbox/security/advisories)
+   branch, draft a [security advisory](https://github.com/catoolbox/catoolbox/security/advisories)
    and request a [CVE number](https://cve.mitre.org/) (if one was not already
    provided in the report). We then inform the reporter about the fix and
    verify that it solves the vulnerability.
