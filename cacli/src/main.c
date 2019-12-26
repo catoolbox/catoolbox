@@ -29,17 +29,35 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <catoolbox/catoolbox.h>
 
 /**
  * The cacli entry point.
  *
  * @return This function returns:
  * <ul>
+ * <li><tt>EXIT_FAILURE</tt> if an error occurred while retrieving the latest
+ * catoolbox version;</li>
  * <li><tt>EXIT_SUCCESS</tt> if the operation completed successfully.</li>
  * </ul>
  */
 int main(int argc, char *argv[])
 {
-    printf("Hello, World!\n");
+    catoolbox_version_info *versionInfo;
+
+    versionInfo = malloc(sizeof(catoolbox_version_info));
+    if (versionInfo == NULL) {
+        return EXIT_FAILURE;
+    }
+
+    versionInfo->size = sizeof(catoolbox_version_info);
+    if (catoolbox_get_version(versionInfo) != CATOOLBOXE_OK) {
+        free(versionInfo);
+        return EXIT_FAILURE;
+    }
+
+    printf("libcatoolbox version: %d.%d.%d\n", versionInfo->major,
+           versionInfo->minor, versionInfo->build);
+    free(versionInfo);
     return EXIT_SUCCESS;
 }

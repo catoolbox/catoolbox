@@ -24,4 +24,28 @@
 # the software, but you are not obliged to do so. If you do not wish to do so,
 # delete this exception statement from your version.
 
-add_subdirectory(src)
+set(cacli_sources
+    src/main.c
+)
+
+add_executable(cacli ${cacli_sources})
+add_dependencies(cacli libcatoolbox)
+set_target_properties(cacli PROPERTIES
+    OUTPUT_NAME "cacli-${CATOOLBOX_VERSION_MAJOR}"
+)
+target_link_libraries(cacli
+    PRIVATE
+        libcatoolbox
+)
+target_include_directories(cacli
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/src
+        ${PROJECT_BINARY_DIR}/libcatoolbox/include
+        ${PROJECT_SOURCE_DIR}/libcatoolbox/include
+)
+
+install(TARGETS cacli
+        EXPORT CAToolboxTargets
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+        COMPONENT catoolbox_cacli
+)

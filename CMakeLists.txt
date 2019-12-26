@@ -33,8 +33,61 @@
 # the software, but you are not obliged to do so. If you do not wish to do so,
 # delete this exception statement from your version.
 
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8.12)
 
-project(catoolbox)
+# Enable Mac OS X RPATH usage by default
+cmake_policy(SET CMP0042 NEW)
 
+include(CMakePackageConfigHelpers)
+include(GNUInstallDirs)
+
+project(catoolbox C)
+
+list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/Modules/")
+
+# Set catoolbox global variables and options.
+set(CATOOLBOX_VERSION_MAJOR 0)
+set(CATOOLBOX_VERSION_MINOR 1)
+set(CATOOLBOX_VERSION_BUILD 0)
+set(CATOOLBOX_VERSION "${CATOOLBOX_VERSION_MAJOR}.${CATOOLBOX_VERSION_MINOR}.${CATOOLBOX_VERSION_BUILD}")
+set(CATOOLBOX_VERSION_IS_DEV_BUILD true)
+
+set(CATOOLBOX_CMAKE_CONFIG_DIR "${CMAKE_INSTALL_LIBDIR}/cmake/CAToolbox${CATOOLBOX_VERSION_MAJOR}")
+
+if(NOT CMAKE_CONFIGURATION_TYPES)
+    if(NOT CMAKE_BUILD_TYPE)
+        message(STATUS "No build type was specified, defaulting to Release.")
+        set_property(CACHE CMAKE_BUILD_TYPE PROPERTY VALUE "Release")
+    endif(NOT CMAKE_BUILD_TYPE)
+endif(NOT CMAKE_CONFIGURATION_TYPES)
+
+configure_file("${PROJECT_SOURCE_DIR}/catoolboxconfig.h.in"
+               "${PROJECT_BINARY_DIR}/catoolboxconfig.h")
+
+# Add subdirectories.
+add_subdirectory(libcatoolbox)
 add_subdirectory(cacli)
+
+# Configure the CMake find_package support.
+set(CATOOLBOX_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}")
+configure_package_config_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake/CAToolboxConfig.cmake.in"
+                              "${PROJECT_BINARY_DIR}/CAToolbox${CATOOLBOX_VERSION_MAJOR}Config.cmake"
+                              INSTALL_DESTINATION "${CATOOLBOX_CMAKE_CONFIG_DIR}"
+                              PATH_VARS CATOOLBOX_INSTALL_DIR
+)
+write_basic_package_version_file("${CMAKE_CURRENT_BINARY_DIR}/CAToolbox${CATOOLBOX_VERSION_MAJOR}Config-version.cmake"
+                                 VERSION "${CATOOLBOX_VERSION}"
+                                 COMPATIBILITY SameMajorVersion
+)
+
+# Register the global catoolkit target in CMake.
+install(FILES
+            "${CMAKE_CURRENT_BINARY_DIR}/CAToolbox${CATOOLBOX_VERSION_MAJOR}Config.cmake"
+            "${CMAKE_CURRENT_BINARY_DIR}/CAToolbox${CATOOLBOX_VERSION_MAJOR}Config-version.cmake"
+        DESTINATION "${CATOOLBOX_CMAKE_CONFIG_DIR}"
+)
+install(EXPORT CAToolboxTargets
+        DESTINATION "${CATOOLBOX_CMAKE_CONFIG_DIR}"
+        NAMESPACE CAToolbox::
+        FILE "CAToolbox${CATOOLBOX_VERSION_MAJOR}Targets.cmake"
+)

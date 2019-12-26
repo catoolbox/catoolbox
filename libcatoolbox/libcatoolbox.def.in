@@ -1,0 +1,3 @@
+LIBRARY catoolbox-@CATOOLBOX_VERSION_MAJOR@
+EXPORTS
+    catoolbox_get_version                   @1
