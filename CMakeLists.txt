@@ -68,6 +68,15 @@ configure_file("${PROJECT_SOURCE_DIR}/catoolboxconfig.h.in"
 add_subdirectory(libcatoolbox)
 add_subdirectory(cacli)
 
+# Install the "basic" documentation files to an appropriate directory.
+install(FILES
+            COPYING
+            COPYING.LESSER
+            LICENSE
+            README.md
+        DESTINATION "${CMAKE_INSTALL_DOCDIR}/catoolbox-${CATOOLBOX_VERSION_MAJOR}"
+)
+
 # Configure the CMake find_package support.
 set(CATOOLBOX_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}")
 configure_package_config_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake/CAToolboxConfig.cmake.in"
