@@ -72,6 +72,10 @@ target_include_directories(libcatoolbox
         ${PROJECT_BINARY_DIR}
 )
 
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/libcatoolbox.pc.in"
+               "${CMAKE_CURRENT_BINARY_DIR}/libcatoolbox-${CATOOLBOX_VERSION_MAJOR}.pc"
+               @ONLY)
+
 install(TARGETS libcatoolbox
         EXPORT CAToolboxTargets
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
@@ -82,4 +86,9 @@ install(TARGETS libcatoolbox
                 COMPONENT catoolbox_devel
         PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/catoolbox-${CATOOLBOX_VERSION_MAJOR}/catoolbox"
                 COMPONENT catoolbox_devel
+)
+install(FILES
+            "${CMAKE_CURRENT_BINARY_DIR}/libcatoolbox-${CATOOLBOX_VERSION_MAJOR}.pc"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig"
+        COMPONENT catoolbox_devel
 )
