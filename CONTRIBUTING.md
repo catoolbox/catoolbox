@@ -129,6 +129,10 @@ Please follow these guidelines when committing.
   Read [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/)
   for an in-depth explanation of the rationale.
 * If possible, [sign your commits using GPG](https://help.github.com/articles/signing-commits-using-gpg/).
+* Unless you are a member of the `catoolbox` organization and are signing
+  your commits with GPG, you will need to add a `Signed-off-by` line to
+  agree to the [Developer Certificate of Origin](https://developercertificate.org/).
+  To do so, add the `-s` switch to `git commit`.
 
 ## Contribute documentation
 We store documentation and examples as Doxygen comments in the source code.
