@@ -52,6 +52,8 @@ set(CATOOLBOX_VERSION_BUILD 0)
 set(CATOOLBOX_VERSION "${CATOOLBOX_VERSION_MAJOR}.${CATOOLBOX_VERSION_MINOR}.${CATOOLBOX_VERSION_BUILD}")
 set(CATOOLBOX_VERSION_IS_DEV_BUILD true)
 
+option(CATOOLBOX_BUILD_CACLI "Build and install the cacli tool." ON)
+
 set(CATOOLBOX_CMAKE_CONFIG_DIR "${CMAKE_INSTALL_LIBDIR}/cmake/CAToolbox${CATOOLBOX_VERSION_MAJOR}")
 
 if(NOT CMAKE_CONFIGURATION_TYPES)
@@ -66,7 +68,9 @@ configure_file("${PROJECT_SOURCE_DIR}/catoolboxconfig.h.in"
 
 # Add subdirectories.
 add_subdirectory(libcatoolbox)
-add_subdirectory(cacli)
+if(CATOOLBOX_BUILD_CACLI)
+    add_subdirectory(cacli)
+endif(CATOOLBOX_BUILD_CACLI)
 
 # Install the "basic" documentation files to an appropriate directory.
 install(FILES
