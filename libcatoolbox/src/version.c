@@ -30,8 +30,7 @@
 
 #include <stdlib.h>
 #include <errno.h>
-#include <catoolbox/catoolbox.h>
-#include "catoolboxconfig.h"
+#include "catoolbox_internal.h"
 
 LIBCATOOLBOX_EXPORT_SYMBOL_DEFAULT(catoolbox_get_version, catoolbox_get_version,
                                    LIBCATOOLBOX_0.1)

@@ -30,6 +30,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <catoolbox/catoolbox.h>
+#include "catoolboxconfig.h"
+#include "catoolbox_internal.h"
 
 /**
  * The cacli entry point.
@@ -45,6 +47,9 @@ int main(int argc, char *argv[])
 {
     catoolbox_version_info *versionInfo;
 
+    UNREFERENCED_PARAMETER(argc);
+    UNREFERENCED_PARAMETER(argv);
+
     versionInfo = malloc(sizeof(catoolbox_version_info));
     if (versionInfo == NULL) {
         return EXIT_FAILURE;
@@ -56,7 +61,7 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
 
-    printf("libcatoolbox version: %d.%d.%d\n", versionInfo->major,
+    printf("libcatoolbox version: %ud.%ud.%ud\n", versionInfo->major,
            versionInfo->minor, versionInfo->build);
     free(versionInfo);
     return EXIT_SUCCESS;

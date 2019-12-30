@@ -33,6 +33,7 @@ add_dependencies(cacli libcatoolbox)
 set_target_properties(cacli PROPERTIES
     OUTPUT_NAME "cacli-${CATOOLBOX_VERSION_MAJOR}"
 )
+set_target_debug_security_flags(cacli)
 target_link_libraries(cacli
     PRIVATE
         libcatoolbox
@@ -42,6 +43,8 @@ target_include_directories(cacli
         ${CMAKE_CURRENT_SOURCE_DIR}/src
         ${PROJECT_BINARY_DIR}/libcatoolbox/include
         ${PROJECT_SOURCE_DIR}/libcatoolbox/include
+        ${PROJECT_SOURCE_DIR}
+        ${PROJECT_BINARY_DIR}
 )
 
 install(TARGETS cacli

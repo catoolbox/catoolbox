@@ -33,10 +33,21 @@
 # the software, but you are not obliged to do so. If you do not wish to do so,
 # delete this exception statement from your version.
 
-cmake_minimum_required(VERSION 2.8.12)
+# On Mac OS X systems, we need to differentiate between the Apple Clang
+# variant and the standard Clang variant, as they support different flags.
+# For this reason, require CMake to be version 3.0 or higher on that OS
+if(APPLE)
+    cmake_minimum_required(VERSION 3.0.0)
+else(APPLE)
+    cmake_minimum_required(VERSION 2.8.12)
+endif(APPLE)
 
+# Report the Apple Clang compiler as AppleClang
+cmake_policy(SET CMP0025 NEW)
 # Enable Mac OS X RPATH usage by default
 cmake_policy(SET CMP0042 NEW)
+# Only interpret if() arguments when unquoted
+cmake_policy(SET CMP0054 NEW)
 
 include(CMakePackageConfigHelpers)
 include(GNUInstallDirs)
@@ -54,6 +65,11 @@ set(CATOOLBOX_VERSION_IS_DEV_BUILD true)
 
 option(CATOOLBOX_BUILD_CACLI "Build and install the cacli tool." ON)
 
+# Set C standard options.
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 # Set CPack options.
 set(CPACK_GENERATOR "")
 set(CPACK_SOURCE_GENERATOR "TGZ")
@@ -70,8 +86,8 @@ set(CATOOLBOX_CMAKE_CONFIG_DIR "${CMAKE_INSTALL_LIBDIR}/cmake/CAToolbox${CATOOLB
 
 if(NOT CMAKE_CONFIGURATION_TYPES)
     if(NOT CMAKE_BUILD_TYPE)
-        message(STATUS "No build type was specified, defaulting to Release.")
-        set_property(CACHE CMAKE_BUILD_TYPE PROPERTY VALUE "Release")
+        message(STATUS "No build type was specified, defaulting to RelWithDebInfo.")
+        set_property(CACHE CMAKE_BUILD_TYPE PROPERTY VALUE "RelWithDebInfo")
     endif(NOT CMAKE_BUILD_TYPE)
 endif(NOT CMAKE_CONFIGURATION_TYPES)
 

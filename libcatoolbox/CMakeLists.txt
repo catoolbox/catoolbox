@@ -28,6 +28,7 @@
 
 include(GenerateExportHeaderWithMap)
 include(GNUInstallDirs)
+include(SetTargetDebugSecurityFlags)
 
 set(libcatoolbox_headers
     "${CMAKE_CURRENT_BINARY_DIR}/include/catoolbox/export.h"
@@ -55,6 +56,7 @@ set_target_properties(libcatoolbox PROPERTIES
     LINK_DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/libcatoolbox.def;${CMAKE_CURRENT_SOURCE_DIR}/libcatoolbox.map"
     POSITION_INDEPENDENT_CODE ON
 )
+set_target_debug_security_flags(libcatoolbox)
 
 generate_export_header_with_map(TARGET libcatoolbox
                                 INCLUDE_GUARD_NAME "CATOOLBOX_EXPORT_H"
@@ -69,6 +71,7 @@ target_include_directories(libcatoolbox
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/src
         ${CMAKE_CURRENT_BINARY_DIR}/include
+        ${PROJECT_SOURCE_DIR}
         ${PROJECT_BINARY_DIR}
 )
 

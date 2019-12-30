@@ -48,7 +48,7 @@
         #define @EXPORT_MACRO_SYMBOL_NAME@
         #define @EXPORT_MACRO_SYMBOL_DEFAULT_NAME@
     #else /* @BUILDING_STATIC_CONDITION@ */
-        #if @BUILDING_LIBRARY_CONDITION@
+        #ifdef @BUILDING_LIBRARY_CONDITION@
             /* This macro marks a symbol for exporting. */
             #define @EXPORT_MACRO_NAME@ @EXPORT_MACRO_DEFINITION@
             /* This macro versions the symbol with the linker if the platform
