@@ -1,4 +1,4 @@
-# Copyright © 2019, the catoolbox contributors
+# Copyright © 2019-2020, the catoolbox contributors
 #
 # libcatoolbox is free software: you can redistribute it and/or modify it
 # under the terms of the GNU Lesser General Public License as published by the
