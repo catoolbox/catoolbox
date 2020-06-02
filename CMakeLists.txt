@@ -49,6 +49,8 @@ cmake_policy(SET CMP0042 NEW)
 # Only interpret if() arguments when unquoted
 cmake_policy(SET CMP0054 NEW)
 
+enable_language(C)
+
 include(CMakePackageConfigHelpers)
 include(GNUInstallDirs)
 
