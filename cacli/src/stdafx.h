@@ -27,38 +27,13 @@
  * delete this exception statement from your version.
  */
 
-#include "stdafx.h"
+#ifndef CACLI_STDAFX_H
+#define CACLI_STDAFX_H
 
-/**
- * The cacli entry point.
- *
- * @return This function returns:
- * <ul>
- * <li><tt>EXIT_FAILURE</tt> if an error occurred while retrieving the latest
- * catoolbox version;</li>
- * <li><tt>EXIT_SUCCESS</tt> if the operation completed successfully.</li>
- * </ul>
- */
-int main(int argc, char *argv[])
-{
-    catoolbox_version_info *versionInfo;
+#include <stdio.h>
+#include <stdlib.h>
+#include <catoolbox/catoolbox.h>
+#include "catoolboxconfig.h"
+#include "catoolbox_internal.h"
 
-    UNREFERENCED_PARAMETER(argc);
-    UNREFERENCED_PARAMETER(argv);
-
-    versionInfo = malloc(sizeof(catoolbox_version_info));
-    if (versionInfo == NULL) {
-        return EXIT_FAILURE;
-    }
-
-    versionInfo->size = sizeof(catoolbox_version_info);
-    if (catoolbox_get_version(versionInfo) != CATOOLBOXE_OK) {
-        free(versionInfo);
-        return EXIT_FAILURE;
-    }
-
-    printf("libcatoolbox version: %ud.%ud.%ud\n", versionInfo->major,
-           versionInfo->minor, versionInfo->build);
-    free(versionInfo);
-    return EXIT_SUCCESS;
-}
+#endif /* CACLI_STDAFX_H */

@@ -28,21 +28,10 @@
  * delete this exception statement from your version.
  */
 
-#include "stdafx.h"
+#ifndef CATOOLBOX_STDAFX_H
+#define CATOOLBOX_STDAFX_H
 
-LIBCATOOLBOX_EXPORT_SYMBOL_DEFAULT(catoolbox_get_version, catoolbox_get_version,
-                                   LIBCATOOLBOX_0.1)
-LIBCATOOLBOX_EXPORT int LIBCATOOLBOX_CALLINGCONVENTION catoolbox_get_version(
-    catoolbox_version_info * versionInfo)
-{
-    if (versionInfo == NULL) {
-        return CATOOLBOXE_INVALID_PARAM;
-    }
-    if (versionInfo->size >= sizeof(catoolbox_version_info)) {
-        versionInfo->major = CATOOLBOX_VERSION_MAJOR;
-        versionInfo->minor = CATOOLBOX_VERSION_MINOR;
-        versionInfo->build = CATOOLBOX_VERSION_BUILD;
-        versionInfo->is_dev_build = CATOOLBOX_VERSION_IS_DEV_BUILD;
-    }
-    return CATOOLBOXE_OK;
-}
+#include <stdlib.h>
+#include "catoolbox_internal.h"
+
+#endif /* CATOOLBOX_STDAFX_H */

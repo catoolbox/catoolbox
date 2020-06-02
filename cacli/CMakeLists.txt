@@ -38,6 +38,12 @@ target_link_libraries(cacli
     PRIVATE
         libcatoolbox
 )
+if(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.16.0")
+    target_precompile_headers(cacli
+        PRIVATE
+            src/stdafx.h
+    )
+endif()
 target_include_directories(cacli
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/src

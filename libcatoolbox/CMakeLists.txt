@@ -64,6 +64,12 @@ generate_export_header_with_map(TARGET libcatoolbox
                                 MAP_FILE_NAME "${CMAKE_CURRENT_SOURCE_DIR}/libcatoolbox.map"
                                 DEF_FILE_NAME "${CMAKE_CURRENT_BINARY_DIR}/libcatoolbox.def"
 )
+if(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.16.0")
+    target_precompile_headers(libcatoolbox
+        PRIVATE
+            src/stdafx.h
+    )
+endif()
 target_include_directories(libcatoolbox
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
