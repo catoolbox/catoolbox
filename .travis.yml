@@ -1,6 +1,7 @@
 version: ~> 1.0
 language: c
 os: linux
+dist: xenial
 jobs:
   include:
   - stage: "Build and test"
@@ -16,30 +17,34 @@ jobs:
   - compiler: clang
     os: linux
     dist: xenial
-  - compiler: gcc
-    os: linux
-    dist: trusty
-    addons:
-      apt:
-        update: true
-        sources:
-          - ubuntu-toolchain-r-test
-        packages:
-          - g++-5
-  - compiler: clang
-    os: linux
-    dist: trusty
   - os: windows
     cache:
       directories:
         - $HOME/AppData/Local/Temp/chocolatey
+    install:
+      - mkdir libbuild
+      - mkdir libinstall
+      - curl -L -O https://cmocka.org/files/1.1/cmocka-1.1.5.tar.xz
+      - 7z x cmocka-1.1.5.tar.xz
+      - 7z x cmocka-1.1.5.tar
+      - cd libbuild
+      - cmake -DCMAKE_INSTALL_PREFIX="$PWD/../libinstall" "$PWD/../cmocka-1.1.5"
+      - cmake --build . --config Release
+      - cmake --install . --config Release
+      - cd ..
+    script: cmake .. -DCMocka_DIR="$PWD/../libinstall/lib/cmake/cmocka" && cmake --build . --verbose --config Debug && cp "$PWD/../libinstall/bin/cmocka.dll" "$PWD/libcatoolbox/Debug/cmocka.dll" && ctest
   - os: osx
+    install:
+      - brew install cmocka
 git:
   autocrlf: false
 addons:
   apt:
     update: true
+    packages:
+      - libcmocka0
+      - libcmocka-dev
 before_script:
   - mkdir build
   - cd build
-script: cmake .. && cmake --build .
+script: cmake .. && cmake --build . && ctest

@@ -43,7 +43,7 @@ if(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.16.0")
         PRIVATE
             src/stdafx.h
     )
-endif()
+endif(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.16.0")
 target_include_directories(cacli
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/src

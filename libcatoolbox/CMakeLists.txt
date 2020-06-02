@@ -26,6 +26,7 @@
 # the library, but you are not obliged to do so. If you do not wish to do so,
 # delete this exception statement from your version.
 
+include(AddCAToolboxTest)
 include(GenerateExportHeaderWithMap)
 include(GNUInstallDirs)
 include(SetTargetDebugSecurityFlags)
@@ -69,7 +70,7 @@ if(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.16.0")
         PRIVATE
             src/stdafx.h
     )
-endif()
+endif(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.16.0")
 target_include_directories(libcatoolbox
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -80,6 +81,11 @@ target_include_directories(libcatoolbox
         ${PROJECT_SOURCE_DIR}
         ${PROJECT_BINARY_DIR}
 )
+
+# Add unit tests.
+if(CATOOLBOX_RUN_TESTS)
+    add_catoolbox_test(version tests/test_version.c)
+endif(CATOOLBOX_RUN_TESTS)
 
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/libcatoolbox.pc.in"
                "${CMAKE_CURRENT_BINARY_DIR}/libcatoolbox-${CATOOLBOX_VERSION_MAJOR}.pc"

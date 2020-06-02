@@ -66,6 +66,7 @@ set(CATOOLBOX_VERSION "${CATOOLBOX_VERSION_MAJOR}.${CATOOLBOX_VERSION_MINOR}.${C
 set(CATOOLBOX_VERSION_IS_DEV_BUILD true)
 
 option(CATOOLBOX_BUILD_CACLI "Build and install the cacli tool." ON)
+option(CATOOLBOX_RUN_TESTS "Build and run unit tests." ON)
 
 # Set C standard options.
 set(CMAKE_CXX_STANDARD 11)
@@ -83,6 +84,16 @@ set(CPACK_PACKAGE_VERSION_PATCH "${CATOOLBOX_VERSION_BUILD}")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Manage a CA with ease")
 set(CPACK_SOURCE_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CATOOLBOX_VERSION}")
 include(CPack)
+
+# Enable testing.
+if(CATOOLBOX_RUN_TESTS)
+    # Allow overriding the CMocka include directory and library path
+    # (e.g. on Win32 platforms).
+    if(NOT (DEFINED CMOCKA_INCLUDE_DIR AND DEFINED CMOCKA_LIBRARIES))
+        find_package(CMocka CONFIG REQUIRED)
+    endif(NOT (DEFINED CMOCKA_INCLUDE_DIR AND DEFINED CMOCKA_LIBRARIES))
+    enable_testing()
+endif(CATOOLBOX_RUN_TESTS)
 
 set(CATOOLBOX_CMAKE_CONFIG_DIR "${CMAKE_INSTALL_LIBDIR}/cmake/CAToolbox${CATOOLBOX_VERSION_MAJOR}")
 
