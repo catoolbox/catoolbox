@@ -31,7 +31,7 @@ set(cacli_sources
 add_executable(cacli ${cacli_sources})
 add_dependencies(cacli libcatoolbox)
 set_target_properties(cacli PROPERTIES
-    OUTPUT_NAME "cacli-${CATOOLBOX_VERSION_MAJOR}"
+    OUTPUT_NAME "cacli${CATOOLBOX_VERSION_SUFFIX}"
 )
 set_target_debug_security_flags(cacli)
 target_link_libraries(cacli

@@ -67,6 +67,8 @@ set(CATOOLBOX_VERSION_IS_DEV_BUILD true)
 
 option(CATOOLBOX_BUILD_CACLI "Build and install the cacli tool." ON)
 option(CATOOLBOX_RUN_TESTS "Build and run unit tests." ON)
+set(CATOOLBOX_VERSION_SUFFIX "" CACHE STRING "Add this suffix to the catoolbox directories and files.")
+mark_as_advanced(CATOOLBOX_VERSION_SUFFIX)
 
 # Set C standard options.
 set(CMAKE_CXX_STANDARD 11)
@@ -85,6 +87,11 @@ set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Manage a CA with ease")
 set(CPACK_SOURCE_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CATOOLBOX_VERSION}")
 include(CPack)
 
+# Print the version suffix for ease of debugging.
+if(NOT CATOOLBOX_VERSION_SUFFIX STREQUAL "")
+    message(STATUS "catoolbox version suffix found: ${CATOOLBOX_VERSION_SUFFIX}")
+endif(NOT CATOOLBOX_VERSION_SUFFIX STREQUAL "")
+
 # Enable testing.
 if(CATOOLBOX_RUN_TESTS)
     # Allow overriding the CMocka include directory and library path
@@ -95,7 +102,7 @@ if(CATOOLBOX_RUN_TESTS)
     enable_testing()
 endif(CATOOLBOX_RUN_TESTS)
 
-set(CATOOLBOX_CMAKE_CONFIG_DIR "${CMAKE_INSTALL_LIBDIR}/cmake/CAToolbox${CATOOLBOX_VERSION_MAJOR}")
+set(CATOOLBOX_CMAKE_CONFIG_DIR "${CMAKE_INSTALL_LIBDIR}/cmake/CAToolbox${CATOOLBOX_VERSION_SUFFIX}")
 
 if(NOT CMAKE_CONFIGURATION_TYPES)
     if(NOT CMAKE_BUILD_TYPE)
@@ -119,29 +126,29 @@ install(FILES
             COPYING.LESSER
             LICENSE
             README.md
-        DESTINATION "${CMAKE_INSTALL_DOCDIR}/catoolbox-${CATOOLBOX_VERSION_MAJOR}"
+        DESTINATION "${CMAKE_INSTALL_DOCDIR}/catoolbox${CATOOLBOX_VERSION_SUFFIX}"
 )
 
 # Configure the CMake find_package support.
 set(CATOOLBOX_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}")
 configure_package_config_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake/CAToolboxConfig.cmake.in"
-                              "${PROJECT_BINARY_DIR}/CAToolbox${CATOOLBOX_VERSION_MAJOR}Config.cmake"
+                              "${PROJECT_BINARY_DIR}/CAToolbox${CATOOLBOX_VERSION_SUFFIX}Config.cmake"
                               INSTALL_DESTINATION "${CATOOLBOX_CMAKE_CONFIG_DIR}"
                               PATH_VARS CATOOLBOX_INSTALL_DIR
 )
-write_basic_package_version_file("${CMAKE_CURRENT_BINARY_DIR}/CAToolbox${CATOOLBOX_VERSION_MAJOR}Config-version.cmake"
+write_basic_package_version_file("${CMAKE_CURRENT_BINARY_DIR}/CAToolbox${CATOOLBOX_VERSION_SUFFIX}Config-version.cmake"
                                  VERSION "${CATOOLBOX_VERSION}"
                                  COMPATIBILITY SameMajorVersion
 )
 
 # Register the global catoolkit target in CMake.
 install(FILES
-            "${CMAKE_CURRENT_BINARY_DIR}/CAToolbox${CATOOLBOX_VERSION_MAJOR}Config.cmake"
-            "${CMAKE_CURRENT_BINARY_DIR}/CAToolbox${CATOOLBOX_VERSION_MAJOR}Config-version.cmake"
+            "${CMAKE_CURRENT_BINARY_DIR}/CAToolbox${CATOOLBOX_VERSION_SUFFIX}Config.cmake"
+            "${CMAKE_CURRENT_BINARY_DIR}/CAToolbox${CATOOLBOX_VERSION_SUFFIX}Config-version.cmake"
         DESTINATION "${CATOOLBOX_CMAKE_CONFIG_DIR}"
 )
 install(EXPORT CAToolboxTargets
         DESTINATION "${CATOOLBOX_CMAKE_CONFIG_DIR}"
         NAMESPACE CAToolbox::
-        FILE "CAToolbox${CATOOLBOX_VERSION_MAJOR}Targets.cmake"
+        FILE "CAToolbox${CATOOLBOX_VERSION_SUFFIX}Targets.cmake"
 )

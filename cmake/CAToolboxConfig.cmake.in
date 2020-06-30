@@ -47,4 +47,4 @@ message(STATUS "catoolbox ${CATOOLBOX_VERSION} found at ${CATOOLBOX_DIR}")
 check_required_components(catoolbox)
 
 # Import the catoolbox targets
-include("${CMAKE_CURRENT_LIST_DIR}/CAToolbox@CATOOLBOX_VERSION_MAJOR@Targets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/CAToolbox@CATOOLBOX_VERSION_SUFFIX@Targets.cmake")

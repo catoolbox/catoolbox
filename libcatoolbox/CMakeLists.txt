@@ -50,7 +50,7 @@ configure_file("${CMAKE_CURRENT_SOURCE_DIR}/libcatoolbox.def.in"
                "${CMAKE_CURRENT_BINARY_DIR}/libcatoolbox.def"
                @ONLY)
 set_target_properties(libcatoolbox PROPERTIES
-    OUTPUT_NAME "catoolbox-${CATOOLBOX_VERSION_MAJOR}"
+    OUTPUT_NAME "catoolbox${CATOOLBOX_VERSION_SUFFIX}"
     PUBLIC_HEADER "${libcatoolbox_headers}"
     VERSION ${CATOOLBOX_VERSION}
     SOVERSION ${CATOOLBOX_VERSION_MAJOR}
@@ -74,7 +74,7 @@ endif(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.16.0")
 target_include_directories(libcatoolbox
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-        $<INSTALL_INTERFACE:include/catoolbox-${CATOOLBOX_VERSION_MAJOR}>
+        $<INSTALL_INTERFACE:include/catoolbox${CATOOLBOX_VERSION_SUFFIX}>
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/src
         ${CMAKE_CURRENT_BINARY_DIR}/include
@@ -88,7 +88,7 @@ if(CATOOLBOX_RUN_TESTS)
 endif(CATOOLBOX_RUN_TESTS)
 
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/libcatoolbox.pc.in"
-               "${CMAKE_CURRENT_BINARY_DIR}/libcatoolbox-${CATOOLBOX_VERSION_MAJOR}.pc"
+               "${CMAKE_CURRENT_BINARY_DIR}/libcatoolbox${CATOOLBOX_VERSION_SUFFIX}.pc"
                @ONLY)
 
 install(TARGETS libcatoolbox
@@ -99,11 +99,11 @@ install(TARGETS libcatoolbox
                 COMPONENT catoolbox_libcatoolbox
         ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
                 COMPONENT catoolbox_devel
-        PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/catoolbox-${CATOOLBOX_VERSION_MAJOR}/catoolbox"
+        PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/catoolbox${CATOOLBOX_VERSION_SUFFIX}/catoolbox"
                 COMPONENT catoolbox_devel
 )
 install(FILES
-            "${CMAKE_CURRENT_BINARY_DIR}/libcatoolbox-${CATOOLBOX_VERSION_MAJOR}.pc"
+            "${CMAKE_CURRENT_BINARY_DIR}/libcatoolbox${CATOOLBOX_VERSION_SUFFIX}.pc"
         DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig"
         COMPONENT catoolbox_devel
 )
