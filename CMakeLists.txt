@@ -87,6 +87,11 @@ set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Manage a CA with ease")
 set(CPACK_SOURCE_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CATOOLBOX_VERSION}")
 include(CPack)
 
+# Ensure that catoolbox is built out of source.
+if(CMAKE_SOURCE_DIR EQUAL CMAKE_BINARY_DIR)
+    message(FATAL_ERROR "catoolbox must be built outside the source directory.")
+endif(CMAKE_SOURCE_DIR EQUAL CMAKE_BINARY_DIR)
+
 # Print the version suffix for ease of debugging.
 if(NOT CATOOLBOX_VERSION_SUFFIX STREQUAL "")
     message(STATUS "catoolbox version suffix found: ${CATOOLBOX_VERSION_SUFFIX}")
