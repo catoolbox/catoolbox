@@ -50,7 +50,8 @@ function(add_c_flag_if_supported flagvar flag)
         set(additionalflag "")
     endif(ARGV2)
 
-    string(REGEX REPLACE "[-=,]" "_" supported "${flag}")
+    string(REGEX REPLACE "[/:=,]" "_" supported "${flag}")
+    string(REPLACE "-" "_" supported "${supported}")
     string(REGEX REPLACE "__+" "_" supported "${supported}")
     string(TOUPPER "${supported}" supported)
     # Treat all warnings as fatal
@@ -71,7 +72,8 @@ function(add_c_flag_if_supported flagvar flag)
 endfunction(add_c_flag_if_supported flag)
 
 function(add_linker_flag_if_supported flagvar flag)
-    string(REGEX REPLACE "[-=,]" "_" supported "${flag}")
+    string(REGEX REPLACE "[/:=,]" "_" supported "${flag}")
+    string(REPLACE "-" "_" supported "${supported}")
     string(REGEX REPLACE "__+" "_" supported "${supported}")
     string(TOUPPER "${supported}" supported)
     # Treat all warnings as fatal (exclude Mac OS X where the flag is not
