@@ -42,7 +42,11 @@ LIBCATOOLBOX_EXPORT int LIBCATOOLBOX_CALLINGCONVENTION catoolbox_get_version(
         versionInfo->major = CATOOLBOX_VERSION_MAJOR;
         versionInfo->minor = CATOOLBOX_VERSION_MINOR;
         versionInfo->build = CATOOLBOX_VERSION_BUILD;
-        versionInfo->is_dev_build = CATOOLBOX_VERSION_IS_DEV_BUILD;
+#ifdef CATOOLBOX_VERSION_IS_DEV_BUILD
+        versionInfo->is_dev_build = true;
+#else /* CATOOLBOX_VERSION_IS_DEV_BUILD */
+        versionInfo->is_dev_build = false;
+#endif /* CATOOLBOX_VERSION_IS_DEV_BUILD */
     }
     return CATOOLBOXE_OK;
 }

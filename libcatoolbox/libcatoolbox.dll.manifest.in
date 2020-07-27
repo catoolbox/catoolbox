@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+   Copyright © 2019-2020, the catoolbox contributors
+
+   libcatoolbox is free software: you can redistribute it and/or modify it
+   under the terms of the GNU Lesser General Public License as published by the
+   Free Software Foundation, either version 3 of the License, or (at your
+   option) any later version.
+
+   libcatoolbox is distributed in the hope that it will be useful, but WITHOUT
+   ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+   FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+   more details.
+
+   You should have received a copy of the GNU Lesser General Public License
+   along with libcatoolbox. If not, see <http://www.gnu.org/licenses/>.
+
+   Additional permission under GNU GPL version 3 section 7
+
+   If you modify libcatoolbox, or any covered work, by linking or combining it
+   with
+   - OpenSSL (or a modified version of that library), or
+   - any C/C++ runtime library,
+   containing parts covered by the terms of their respective licenses, the
+   licensors of libcatoolbox grant you additional permission to convey the
+   resulting work.
+   If you modify this library, you may extend this exception to your version of
+   the library, but you are not obliged to do so. If you do not wish to do so,
+   delete this exception statement from your version.
+-->
+
+<!-- The file "libcatoolbox.dll.manifest" is automatically generated from
+     "libcatoolbox.dll.manifest.in" at compile time. Do not edit it
+     manually. -->
+
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1"
+          xmlns:asmv3="urn:schemas-microsoft-com:asm.v3"
+          xmlns:cmp="urn:schemas-microsoft-com:compatibility.v1"
+          xmlns:ws2="http://schemas.microsoft.com/SMI/2016/WindowsSettings"
+          manifestVersion="1.0">
+    <assemblyIdentity type="win32" name="CAToolbox.CAToolbox.LibCAToolbox"
+                      processorArchitecture="@CATOOLBOX_WINDOWS_MANIFEST_PROCESSOR_ARCHITECTURE@"
+                      version="@CATOOLBOX_VERSION_MAJOR@.@CATOOLBOX_VERSION_MINOR@.@CATOOLBOX_VERSION_BUILD@.0" />
+    <description>The catoolbox library</description>
+    <cmp:compatibility>
+        <cmp:application>
+            <cmp:supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}" /><!-- Windows 10 -->
+            <cmp:supportedOS Id="{1f676c76-80e1-4239-95bb-83d0f6d0da78}" /><!-- Windows 8.1 -->
+            <cmp:supportedOS Id="{4a2f28e3-53b9-4441-ba9c-d69d4a4a6e38}" /><!-- Windows 8 -->
+            <cmp:supportedOS Id="{35138b9a-5d96-4fbd-8e2d-a2440225f93a}" /><!-- Windows 7 -->
+            <cmp:supportedOS Id="{e2011457-1546-43c5-a5fe-008deee3d3f0}" /><!-- Windows Vista -->
+        </cmp:application>
+    </cmp:compatibility>
+    <asmv3:application>
+        <asmv3:windowsSettings>
+            <ws2:longPathAware>true</ws2:longPathAware>
+        </asmv3:windowsSettings>
+    </asmv3:application>
+    <asmv3:trustInfo>
+        <asmv3:security>
+            <asmv3:requestedPrivileges>
+                <asmv3:requestedExecutionLevel level="asInvoker"
+                                               uiAccess="false" />
+            </asmv3:requestedPrivileges>
+        </asmv3:security>
+    </asmv3:trustInfo>
+</assembly>

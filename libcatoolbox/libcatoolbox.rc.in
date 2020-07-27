@@ -1,0 +1,78 @@
+/*
+ * Copyright © 2019-2020, the catoolbox contributors
+ *
+ * libcatoolbox is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or (at your
+ * option) any later version.
+ *
+ * libcatoolbox is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with libcatoolbox. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Additional permission under GNU GPL version 3 section 7
+ *
+ * If you modify libcatoolbox, or any covered work, by linking or combining it
+ * with
+ * - OpenSSL (or a modified version of that library), or
+ * - any C/C++ runtime library,
+ * containing parts covered by the terms of their respective licenses, the
+ * licensors of libcatoolbox grant you additional permission to convey the
+ * resulting work.
+ * If you modify this library, you may extend this exception to your version of
+ * the library, but you are not obliged to do so. If you do not wish to do so,
+ * delete this exception statement from your version.
+ */
+
+/* The file "libcatoolbox.rc" is automatically generated from
+   "libcatoolbox.rc.in" at compile time. Do not edit it manually. */
+
+#pragma code_page(65001) /* Use UTF-8 */
+#include "stdafx.h"
+
+2 RT_MANIFEST "libcatoolbox.dll.manifest"
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION @CATOOLBOX_VERSION_MAJOR@,@CATOOLBOX_VERSION_MINOR@,@CATOOLBOX_VERSION_BUILD@,@CATOOLBOX_VERSION_REVISION@
+ PRODUCTVERSION @CATOOLBOX_VERSION_MAJOR@,@CATOOLBOX_VERSION_MINOR@,@CATOOLBOX_VERSION_BUILD@,@CATOOLBOX_VERSION_REVISION@
+ FILEFLAGSMASK VS_FFI_FILEFLAGSMASK
+#ifdef _DEBUG
+ #ifdef CATOOLBOX_VERSION_IS_DEV_BUILD
+ FILEFLAGS (VS_FF_DEBUG|VS_FF_PRERELEASE)
+ #else /* CATOOLBOX_VERSION_IS_DEV_BUILD */
+ FILEFLAGS VS_FF_DEBUG
+ #endif /* CATOOLBOX_VERSION_IS_DEV_BUILD */
+#else /* _DEBUG_ */
+ #ifdef CATOOLBOX_VERSION_IS_DEV_BUILD
+ FILEFLAGS VS_FF_PRERELEASE
+ #else /* CATOOLBOX_VERSION_IS_DEV_BUILD */
+ FILEFLAGS 0x0L
+ #endif /* CATOOLBOX_VERSION_IS_DEV_BUILD */
+#endif /* _DEBUG_ */
+ FILEOS VOS_NT_WINDOWS32
+ FILETYPE VFT_DLL
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "The catoolbox contributors"
+            VALUE "FileDescription", "The catoolbox library"
+            VALUE "FileVersion", "@CATOOLBOX_VERSION_WITH_REVISION@"
+            VALUE "InternalName", "libcatoolbox.dll"
+            VALUE "LegalCopyright", "Copyright © 2019-2020, the catoolbox contributors"
+            VALUE "OriginalFilename", "catoolbox@CATOOLBOX_VERSION_SUFFIX@.dll"
+            VALUE "ProductName", "catoolbox"
+            VALUE "ProductVersion", "@CATOOLBOX_VERSION_WITH_REVISION@"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END

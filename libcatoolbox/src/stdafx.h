@@ -31,7 +31,7 @@
 #ifndef CATOOLBOX_STDAFX_H
 #define CATOOLBOX_STDAFX_H
 
-#include <stdlib.h>
 #include "catoolbox_internal.h"
+#include <stdlib.h>
 
 #endif /* CATOOLBOX_STDAFX_H */

@@ -27,6 +27,7 @@
 # delete this exception statement from your version.
 
 include(AddCAToolboxTest)
+include(DisableMSVCDefaultManifest)
 include(GenerateExportHeaderWithMap)
 include(GNUInstallDirs)
 include(SetTargetDebugSecurityFlags)
@@ -41,6 +42,18 @@ set(libcatoolbox_sources
     libcatoolbox.map
     src/version.c
 )
+
+if(WIN32)
+    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/libcatoolbox.dll.manifest.in"
+                   "${CMAKE_CURRENT_BINARY_DIR}/libcatoolbox.dll.manifest"
+                   @ONLY)
+    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/libcatoolbox.rc.in"
+                   "${CMAKE_CURRENT_BINARY_DIR}/libcatoolbox.rc"
+                   @ONLY)
+    set(libcatoolbox_sources
+        ${libcatoolbox_sources}
+        "${CMAKE_CURRENT_BINARY_DIR}/libcatoolbox.rc")
+endif(WIN32)
 
 add_library(libcatoolbox SHARED
             ${libcatoolbox_headers}
@@ -58,6 +71,7 @@ set_target_properties(libcatoolbox PROPERTIES
     POSITION_INDEPENDENT_CODE ON
 )
 set_target_debug_security_flags(libcatoolbox)
+disable_msvc_auto_manifest(libcatoolbox)
 
 generate_export_header_with_map(TARGET libcatoolbox
                                 INCLUDE_GUARD_NAME "CATOOLBOX_EXPORT_H"

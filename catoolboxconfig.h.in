@@ -60,9 +60,8 @@
 #define CATOOLBOX_VERSION_BUILD @CATOOLBOX_VERSION_BUILD@
 
 /**
- * Whether this build of cacli/libcatoolbox is a development build (true)
- * or a released version (false).
+ * Defined if this build of cacli/libcatoolbox is a development build.
  */
-#define CATOOLBOX_VERSION_IS_DEV_BUILD @CATOOLBOX_VERSION_IS_DEV_BUILD@
+#cmakedefine CATOOLBOX_VERSION_IS_DEV_BUILD
 
 #endif /* CATOOLBOX_CATOOLBOXCONFIG_H */

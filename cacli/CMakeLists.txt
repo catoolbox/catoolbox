@@ -24,9 +24,25 @@
 # the software, but you are not obliged to do so. If you do not wish to do so,
 # delete this exception statement from your version.
 
+include(DisableMSVCDefaultManifest)
+include(GNUInstallDirs)
+include(SetTargetDebugSecurityFlags)
+
 set(cacli_sources
     src/main.c
 )
+
+if(WIN32)
+    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cacli.exe.manifest.in"
+                   "${CMAKE_CURRENT_BINARY_DIR}/cacli.exe.manifest"
+                   @ONLY)
+    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cacli.rc.in"
+                   "${CMAKE_CURRENT_BINARY_DIR}/cacli.rc"
+                   @ONLY)
+    set(cacli_sources
+        ${cacli_sources}
+        "${CMAKE_CURRENT_BINARY_DIR}/cacli.rc")
+endif(WIN32)
 
 add_executable(cacli ${cacli_sources})
 add_dependencies(cacli libcatoolbox)
@@ -34,6 +50,7 @@ set_target_properties(cacli PROPERTIES
     OUTPUT_NAME "cacli${CATOOLBOX_VERSION_SUFFIX}"
 )
 set_target_debug_security_flags(cacli)
+disable_msvc_auto_manifest(cacli)
 target_link_libraries(cacli
     PRIVATE
         libcatoolbox

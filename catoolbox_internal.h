@@ -46,6 +46,30 @@
     #error Both DEBUG and NDEBUG are defined.
 #endif
 
+/* Set the project-wide minimum required version of Microsoft Windows, as well
+   as strict mode. Also, reduce the size of included Windows header files and
+   enable Unicode support.
+   We support only non-EOL Windows versions.
+   Windows headers are always included in this case as we add an .rc file
+   to each component (minus tests) and to avoid the double definition of the
+   UNREFERENCED_PARAMETER macro. */
+#ifdef _WIN32
+    #define UNICODE
+    #define _UNICODE
+    #include <winsdkver.h>
+    #ifndef _WIN32_WINNT
+        #define _WIN32_WINNT 0x0602 /* _WIN32_WINNT_WIN8 */
+    #endif /* _WIN32_WINNT */
+    #include <sdkddkver.h>
+    #ifndef STRICT
+        #define STRICT
+    #endif /* STRICT */
+    #ifndef WIN32_LEAN_AND_MEAN
+        #define WIN32_LEAN_AND_MEAN
+    #endif /* WIN32_LEAN_AND_MEAN */
+    #include <windows.h>
+#endif /* _WIN32 */
+
 /* Use this macro to mark a function parameter as deliberately unused. */
 #ifndef UNREFERENCED_PARAMETER
 #define UNREFERENCED_PARAMETER(x) ((void)x)

@@ -30,10 +30,8 @@
 #ifndef CACLI_STDAFX_H
 #define CACLI_STDAFX_H
 
+#include "catoolbox_internal.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <catoolbox/catoolbox.h>
-#include "catoolboxconfig.h"
-#include "catoolbox_internal.h"
 
 #endif /* CACLI_STDAFX_H */
