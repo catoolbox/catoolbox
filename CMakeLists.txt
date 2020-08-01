@@ -35,12 +35,17 @@
 
 # On Mac OS X systems, we need to differentiate between the Apple Clang
 # variant and the standard Clang variant, as they support different flags.
-# For this reason, require CMake to be version 3.0 or higher on that OS
+# For this reason, require CMake to be version 3.0 or higher on that OS.
+# On Microsoft Windows, we require CMake 3.16 or higher to be able to
+# dynamically detect DLL dependencies and copy them to the target directory at
+# build time (this is required by unit tests).
 if(APPLE)
     cmake_minimum_required(VERSION 3.0.0)
-else(APPLE)
+elseif(WIN32)
+    cmake_minimum_required(VERSION 3.16.0)
+else()
     cmake_minimum_required(VERSION 2.8.12)
-endif(APPLE)
+endif()
 
 # Report the Apple Clang compiler as AppleClang
 cmake_policy(SET CMP0025 NEW)
@@ -116,6 +121,16 @@ if(CATOOLBOX_RUN_TESTS)
     endif(NOT (DEFINED CMOCKA_INCLUDE_DIR AND DEFINED CMOCKA_LIBRARIES))
     enable_testing()
 endif(CATOOLBOX_RUN_TESTS)
+# Since the CMocka configuration file does not offer us a variable containing
+# the full path to the library, we need to ask for it on Microsoft Windows.
+# By default, we will try to find the binary library in
+# ${CMocka_DIR}/../../../bin.
+if(WIN32)
+    set(CATOOLBOX_CMOCKA_BINARY_DIR "${CMocka_DIR}/../../../bin" CACHE PATH "The path to the directory where the CMocka binary files are installed.")
+    if(NOT (EXISTS "${CATOOLBOX_CMOCKA_BINARY_DIR}/cmocka.dll"))
+        message(FATAL_ERROR "cmocka.dll was not found in '${CATOOLBOX_CMOCKA_BINARY_DIR}'.")
+    endif(NOT (EXISTS "${CATOOLBOX_CMOCKA_BINARY_DIR}/cmocka.dll"))
+endif(WIN32)
 
 set(CATOOLBOX_CMAKE_CONFIG_DIR "${CMAKE_INSTALL_LIBDIR}/cmake/CAToolbox${CATOOLBOX_VERSION_SUFFIX}")
 

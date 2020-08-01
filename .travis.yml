@@ -32,7 +32,7 @@ jobs:
       - cmake --build . --config Release
       - cmake --install . --config Release
       - cd ..
-    script: cmake -Werror=dev -Werror=deprecated .. -DCMocka_DIR="$PWD/../libinstall/lib/cmake/cmocka" && cmake --build . --config Debug && cp "$PWD/../libinstall/bin/cmocka.dll" "$PWD/libcatoolbox/Debug/cmocka.dll" && ctest
+    script: cmake -Werror=dev -Werror=deprecated .. -DCMocka_DIR="$PWD/../libinstall/lib/cmake/cmocka" && cmake --build . --config Debug && ctest
   - os: osx
     install:
       - brew install cmocka

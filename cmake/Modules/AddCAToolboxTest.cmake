@@ -52,4 +52,18 @@ function(add_catoolbox_test target)
             ${CMOCKA_INCLUDE_DIR}
     )
     add_test(${target} "test_${target}")
+    if(WIN32)
+        # Ensure that any dependencies of the test target (e.g. the CMocka DLL)
+        # are copied to the destination directory. Requires CMake 3.16+.
+        # Note that, since the CMocka configuration files do not provide us
+        # with a variable exposing the full path to the binary, we need to
+        # add its path explicitly.
+        add_custom_command(TARGET "test_${target}" POST_BUILD
+                           COMMAND ${CMAKE_COMMAND}
+                               -D CATOOLBOX_EXCLUSIONS="$<TARGET_FILE_NAME:libcatoolbox>"
+                               -D TARGET_TO_TRACK="$<TARGET_FILE:test_${target}>"
+                               -D TARGET_ADDITIONAL_DIRECTORIES="${CATOOLBOX_CMOCKA_BINARY_DIR}"
+                               -D TARGET_FILE_DIR="$<TARGET_FILE_DIR:test_${target}>"
+                               -P "${PROJECT_SOURCE_DIR}/cmake/CopyDependencyForTarget.cmake")
+    endif(WIN32)
 endfunction(add_catoolbox_test)
