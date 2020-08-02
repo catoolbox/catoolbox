@@ -53,15 +53,17 @@ cmake_policy(SET CMP0025 NEW)
 cmake_policy(SET CMP0042 NEW)
 # Only interpret if() arguments when unquoted
 cmake_policy(SET CMP0054 NEW)
-
-enable_language(C)
-
-include(CMakePackageConfigHelpers)
-include(GNUInstallDirs)
+# Ignore variables which are not already present in the cache
+if(("${CMAKE_MAJOR_VERSION}" EQUAL 3 AND "${CMAKE_MINOR_VERSION}" GREATER 16) OR ("${CMAKE_MAJOR_VERSION}" GREATER 3))
+    cmake_policy(SET CMP0102 NEW)
+endif(("${CMAKE_MAJOR_VERSION}" EQUAL 3 AND "${CMAKE_MINOR_VERSION}" GREATER 16) OR ("${CMAKE_MAJOR_VERSION}" GREATER 3))
 
 project(catoolbox C)
 
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/Modules/")
+
+include(CMakePackageConfigHelpers)
+include(GNUInstallDirs)
 
 # Set catoolbox global variables and options.
 set(CATOOLBOX_VERSION_MAJOR 0)
