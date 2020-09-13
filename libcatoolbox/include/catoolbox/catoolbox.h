@@ -48,7 +48,10 @@
     #define CATOOLBOX_REQUIRE_VERSION 1
 #endif /* CATOOLBOX_REQUIRE_VERSION */
 
+#define CATOOLBOX_INTERNAL_INCLUDE_GUARD 1
 #include <catoolbox/export.h>
+#include <catoolbox/salannotations.h>
+#undef CATOOLBOX_INTERNAL_INCLUDE_GUARD
 
 #include <catoolbox/errcodes.h>
 #include <catoolbox/version.h>

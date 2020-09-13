@@ -32,8 +32,9 @@
 
 LIBCATOOLBOX_EXPORT_SYMBOL_DEFAULT(catoolbox_get_version, catoolbox_get_version,
                                    LIBCATOOLBOX_0.1)
-LIBCATOOLBOX_EXPORT int LIBCATOOLBOX_CALLINGCONVENTION catoolbox_get_version(
-    catoolbox_version_info * versionInfo)
+LIBCATOOLBOX_EXPORT CATOOLBOX_SAL_SUCCESS(return == CATOOLBOXE_OK)
+CATOOLBOX_SAL_CHECK_RETURN int LIBCATOOLBOX_CALLINGCONVENTION
+catoolbox_get_version(CATOOLBOX_SAL_INOUT catoolbox_version_info * versionInfo)
 {
     if (versionInfo == NULL) {
         return CATOOLBOXE_INVALID_PARAM;

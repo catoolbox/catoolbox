@@ -39,7 +39,10 @@
 #ifndef CATOOLBOX_VERSION_H
 #define CATOOLBOX_VERSION_H
 
+#define CATOOLBOX_INTERNAL_INCLUDE_GUARD 1
 #include <catoolbox/export.h>
+#include <catoolbox/salannotations.h>
+#undef CATOOLBOX_INTERNAL_INCLUDE_GUARD
 
 #include <stdlib.h>
 #include <stdbool.h>
@@ -53,7 +56,7 @@ extern "C" {
      * @brief The structure used to return the <tt>libcatoolbox</tt> version
      * information.
      */
-    typedef struct {
+    typedef CATOOLBOX_SAL_STRUCT_SIZE_BYTES(size) struct {
         /**
          * @brief The size of the structure.
          *
@@ -99,8 +102,10 @@ extern "C" {
      * successfully or <tt>CATOOLBOXE_INVALID_PARAM</tt> if
      * <tt>versionInfo</tt> is <tt>NULL</tt>.
      */
-    LIBCATOOLBOX_EXPORT extern int LIBCATOOLBOX_CALLINGCONVENTION
-        catoolbox_get_version(catoolbox_version_info * versionInfo);
+    LIBCATOOLBOX_EXPORT CATOOLBOX_SAL_SUCCESS(return == CATOOLBOXE_OK)
+        extern CATOOLBOX_SAL_CHECK_RETURN int LIBCATOOLBOX_CALLINGCONVENTION
+        catoolbox_get_version(CATOOLBOX_SAL_INOUT
+                              catoolbox_version_info * versionInfo);
 
 #ifdef  __cplusplus
 }

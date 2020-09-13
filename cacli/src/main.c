@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
 
-    printf("libcatoolbox version: %ud.%ud.%ud\n", versionInfo->major,
+    printf("libcatoolbox version: %u.%u.%u\n", versionInfo->major,
            versionInfo->minor, versionInfo->build);
     free(versionInfo);
     return EXIT_SUCCESS;
