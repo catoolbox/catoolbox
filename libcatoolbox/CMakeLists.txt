@@ -36,6 +36,7 @@ set(libcatoolbox_headers
     "${CMAKE_CURRENT_BINARY_DIR}/include/catoolbox/export.h"
     include/catoolbox/catoolbox.h
     include/catoolbox/errcodes.h
+    include/catoolbox/gccattributes.h
     include/catoolbox/salannotations.h
     include/catoolbox/version.h
 )

@@ -103,7 +103,9 @@ extern "C" {
      * <tt>versionInfo</tt> is <tt>NULL</tt>.
      */
     LIBCATOOLBOX_EXPORT CATOOLBOX_SAL_SUCCESS(return == CATOOLBOXE_OK)
-        extern CATOOLBOX_SAL_CHECK_RETURN int LIBCATOOLBOX_CALLINGCONVENTION
+        extern CATOOLBOX_SAL_CHECK_RETURN
+        CATOOLBOX_GCC_ATTRIBUTE_ACCESS((read_write, 1))
+        int LIBCATOOLBOX_CALLINGCONVENTION
         catoolbox_get_version(CATOOLBOX_SAL_INOUT
                               catoolbox_version_info * versionInfo);
 

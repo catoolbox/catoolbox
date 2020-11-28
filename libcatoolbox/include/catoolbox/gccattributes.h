@@ -29,32 +29,24 @@
  */
 
 /**
- * @file catoolbox.h
- * @brief The <tt>libcatoolbox</tt> API.
+ * @file gccattributes.h
+ * @brief <tt>libcatoolbox</tt> GCC attributes.
  *
- * This header contains all <tt>libcatoolbox</tt> APIs.
+ * This header defines GCC annotation macros. It is not meant to be included
+ * directly.
  */
 
-#ifndef CATOOLBOX_CATOOLBOX_H
-#define CATOOLBOX_CATOOLBOX_H
+#ifndef CATOOLBOX_INTERNAL_INCLUDE_GUARD
+#error This header is used by libcatoolbox internals and is not meant to be included directly.
+#endif /* CATOOLBOX_INTERNAL_INCLUDE_GUARD */
 
-/* To allow developers to control the dependencies of their program with
-   confidence, API are versioned according to their minor release.
-   If you define CATOOLBOX_REQUIRE_VERSION before including this header,
-   any APIs belonging to a minor version greater than the one you specify
-   will not be available. If no such constant is defined, all APIs will be
-   available by default. */
-#ifndef CATOOLBOX_REQUIRE_VERSION
-    #define CATOOLBOX_REQUIRE_VERSION 1
-#endif /* CATOOLBOX_REQUIRE_VERSION */
+#ifndef CATOOLBOX_GCCANNOTATIONS_H
+#define CATOOLBOX_GCCANNOTATIONS_H
 
-#define CATOOLBOX_INTERNAL_INCLUDE_GUARD 1
-#include <catoolbox/export.h>
-#include <catoolbox/gccattributes.h>
-#include <catoolbox/salannotations.h>
-#undef CATOOLBOX_INTERNAL_INCLUDE_GUARD
+#if defined(__GNUC__) && __GNUC__ >= 10
+    #define CATOOLBOX_GCC_ATTRIBUTE_ACCESS(x) __attribute__((access (x)))
+#else
+    #define CATOOLBOX_GCC_ATTRIBUTE_ACCESS(x)
+#endif /* defined(__GNUC__) && __GNUC__ >= 10 */
 
-#include <catoolbox/errcodes.h>
-#include <catoolbox/version.h>
-
-#endif /* CATOOLBOX_CATOOLBOX_H */
+#endif /* CATOOLBOX_GCCANNOTATIONS_H */
