@@ -55,6 +55,17 @@ target_link_libraries(cacli
     PRIVATE
         libcatoolbox
 )
+if(WIN32)
+    # Ensure that libcatoolbox is copied to the destination directory.
+    # Requires CMake 3.16+.
+    add_custom_command(TARGET "cacli" POST_BUILD
+                       COMMAND ${CMAKE_COMMAND}
+                           -D TARGET_ADDITIONAL_DIRECTORIES="$<TARGET_FILE_DIR:libcatoolbox>"
+                           -D CATOOLBOX_EXCLUSIONS=""
+                           -D TARGET_TO_TRACK="$<TARGET_FILE:cacli>"
+                           -D TARGET_FILE_DIR="$<TARGET_FILE_DIR:cacli>"
+                           -P "${PROJECT_SOURCE_DIR}/cmake/CopyDependencyForTarget.cmake")
+endif(WIN32)
 if(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.16.0")
     target_precompile_headers(cacli
         PRIVATE
